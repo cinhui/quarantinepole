@@ -19,13 +19,15 @@ function loadData(data, tabletop) {
     var today = new Date();
     var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    // console.log(date)
-    // console.log(time)
+    console.log(date)
+    console.log(time)
 
     // console.log(data)
 
     tableData = data.filter(event => event.date === date);
-    tableData = data.filter(event => event.time >= time);
+    // tableData = data.filter(event => event.time >= time);
+
+    // console.log(tableData)
     populateTable()
     // Populate dropdown menus
     var categoryOptions = Array.from(new Set(data.map(item=>item.category)));
@@ -39,7 +41,7 @@ function loadData(data, tabletop) {
     instructorOptions.unshift("");
     var instructorList = d3.select("#instructorvalue");
     instructorList.selectAll('option').data(instructorOptions).enter()
-            .append('option').attr("value", function (d) { return d; }).text(function(d){ return d;});
+            .append('option').attr("value", function (d) { return d; }).text(function(d){ return d.split(" @ ")[0];});
     // console.log(instructorOptions);
 
    }
@@ -56,7 +58,7 @@ function populateTable(){
 
     if (Object.entries(tableData).length === 0){
         var row = tbody.append("tr");
-        var cell = row.append("td").attr("colspan", "6")
+        var cell = row.append("td").attr("colspan", "8")
             cell.text("None found");
     }
     tableData.forEach(function(event) {
@@ -65,7 +67,20 @@ function populateTable(){
         // Append columns
         Object.entries(event).forEach(function([key, value]) {
             var cell = row.append("td");
-            cell.text(value);
+            if (key == "instructor"){
+                var parts = value.split(" @ ");
+                cell.append('a')
+                .attr('href', parts[1])
+                .attr('target','_blank')
+                .append('text').html(parts[0]);
+            } else if (key == "howto"){
+                cell.append('a')
+                .attr('href', value)
+                .attr('target','_blank')
+                .append('text').html("Link");                
+            } else {
+                cell.text(value);
+            }
         });
     });
 
