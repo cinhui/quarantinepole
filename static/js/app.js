@@ -10,6 +10,9 @@ window.addEventListener('DOMContentLoaded', init)
 
 var tableData = [];
 var originalData = [];
+var parseDate = d3.time.format("%m/%d/%Y").parse;
+var formatDate = d3.time.format("%m/%d/%Y");
+var formatTime = d3.time.format("%I:%M %p");
 
 function loadData(data, tabletop) {
     
@@ -19,12 +22,15 @@ function loadData(data, tabletop) {
     var today = new Date();
     var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    console.log(date)
-    console.log(time)
+    // console.log(date)
+    // console.log(time)
 
     // console.log(data)
-
-    tableData = data.filter(event => event.date === date);
+    tableData = data.filter(event => {
+        let eventdate = new Date(event.Date);
+        return formatDate(eventdate) === formatDate(today)
+    });
+    // tableData = data.filter(event => event.date === date);
     // tableData = data.filter(event => event.time >= time);
 
     // console.log(tableData)
@@ -103,7 +109,10 @@ searchTableButton.on("click", function() {
     // console.log(instructorValue);   
 
     if (dateValue != "" ){
-        tableData = data.filter(event => event.date === dateValue);
+        tableData = data.filter(event => {
+            let eventdate = new Date(event.Date);
+            return formatDate(eventdate) === dateValue
+        });
     } else {
         tableData = data;
     }
