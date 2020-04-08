@@ -31,12 +31,18 @@
                                 <div class="form-group">
                                     <label for="date">Date</label>
                                     <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
-                                    <label for="category">Type of Class</label>
-                                    <select class="category"></select>
-                                    <label for="instructor">Instructor</label>
-                                    <select id="instructor"></select>  
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label for="category">Type of Class</label>
+                                    <select class="category">
+                                        <option selected="">All Classes</option>
+                                    </select>
+                                <div class="form-group">
+                                    <label for="instructor">Instructor</label>
+                                    <select id="instructor">
+                                        <option selected="">All Instructors</option>
+                                    </select>  
+                                </div> 
                                 <div class="text-center"> 
                                     <button id="search-btn" type="submit" class="btn btn-primary" aria-pressed="false">Search</button>
                                 </div>
