@@ -22,16 +22,22 @@ function loadData(data, tabletop) {
     var today = new Date();
     var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    
     // console.log(date)
-    // console.log(time)
+    // console.log(time.toLocaleString())
 
     // console.log(data)
     tableData = data.filter(event => {
         let eventdate = new Date(event.Date);
         return formatDate(eventdate) === formatDate(today)
     });
-    // tableData = data.filter(event => event.date === date);
-    // tableData = data.filter(event => event.time >= time);
+    tableData = data.filter(event => {
+        eventdatetimestring = event.Date + " " + event.Time + " " + event.Timezone
+        // console.log(eventdatetimestring)
+        var eventdatetime = new Date(eventdatetimestring);
+        // console.log('Local Time: ' + eventdatetime.toLocaleString())
+        return eventdatetime.toLocaleString() >= today.toLocaleString()
+    });
 
     // console.log(tableData)
     populateTable()
@@ -71,9 +77,16 @@ function populateTable(){
         // Append row
         var row = tbody.append("tr");
         // Append columns
+
         Object.entries(event).forEach(function([key, value]) {
+            if (key != "Time" && key != "Timezone"){
             var cell = row.append("td");
-            if (key == "instructor"){
+            if (key == "DateTime"){
+                var newvalue = new Date(value);
+                // console.log(value)
+                // console.log(newvalue)
+                cell.text(formatTime(newvalue) + " (" + value.substring(10) + ")");
+            } else if (key == "instructor"){
                 var parts = value.split(" @ ");
                 cell.append('a')
                 .attr('href', parts[1])
@@ -87,6 +100,7 @@ function populateTable(){
             } else {
                 cell.text(value);
             }
+        }
         });
     });
 
