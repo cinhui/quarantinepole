@@ -12,16 +12,6 @@ body {
   overflow: auto;
 }
 
-
-/* Adding styles to the aside and filter form */
-.filters {
-  padding: 0;
-}
-
-.filters {
-  margin-top: 10px;
-}
-
 select {
   display: block;
   width: 100%;
@@ -31,7 +21,7 @@ select {
 }
 
 #table-area th {
-  text-align: center;
+  text-align: left;
 }
 
 #table-area th:first-child,
