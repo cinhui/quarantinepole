@@ -31,7 +31,7 @@ function loadData(data, tabletop) {
         let eventdate = new Date(event.Date);
         return formatDate(eventdate) === formatDate(today)
     });
-    tableData = data.filter(event => {
+    tableData = tableData.filter(event => {
         eventdatetimestring = event.Date + " " + event.Time + " " + event.Timezone
         // console.log(eventdatetimestring)
         var eventdatetime = new Date(eventdatetimestring);
@@ -129,7 +129,11 @@ searchTableButton.on("click", function() {
             return formatDate(eventdate) === dateValue
         });
     } else {
-        tableData = data;
+        tableData = data.filter(event => {
+            let eventdate = new Date(event.Date);
+            let today = new Date();
+            return formatDate(eventdate) === formatDate(today)
+     });
     }
 
     if (categoryValue != "All Classes" ){
