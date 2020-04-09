@@ -16,8 +16,7 @@ $(document).ready(function() {
         "ordering": false,
         "info":     false,
         "searching": false,
-        "sScrollX": "100%",
-        "scrollCollapse": true
+        "sScrollX": "100%"
     });
 } );
 
