@@ -15,7 +15,9 @@ $(document).ready(function() {
         "paging": false,
         "ordering": false,
         "info":     false,
-        "searching": false
+        "searching": false,
+        "sScrollX": "100%",
+        "scrollCollapse": true
     });
 } );
 
