@@ -93,7 +93,8 @@ function populateTable(){
         // Append columns
 
         Object.entries(event).forEach(function([key, value]) {
-            if (key != "Time" && key != "Timezone"){
+            if (key != "Time" && key != "Timezone" 
+            && key != "TZ code" && key != "UTC Time"){
                 var cell = row.append("td");
                 if (key == "DateTime"){
                     var newvalue = new Date(value);
