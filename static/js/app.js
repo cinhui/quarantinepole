@@ -43,13 +43,14 @@ function loadData(data, tabletop) {
         let eventdate = new Date(event.Date);
         return formatDate(eventdate) === formatDate(today)
     });
-    tableData = tableData.filter(event => {
-        eventdatetimestring = event.Date + " " + event.Time + " " + event.Timezone
-        // console.log(eventdatetimestring)
-        var eventdatetime = new Date(eventdatetimestring);
-        // console.log('Local Time: ' + eventdatetime.toLocaleString())
-        return eventdatetime.toLocaleString() >= today.toLocaleString()
-    });
+    // tableData = tableData.filter(event => {
+    //     // eventdatetimestring = event.Date + " " + event.Time + " " + event.Timezone
+    //     // console.log(eventdatetimestring)
+    //     var eventdatetime = new Date(event.DateTime);
+    //     console.log('Local Time: ' + eventdatetime.toLocaleString())
+    //     console.log(formatTime(time))
+    //     return eventdatetime.toLocaleString() >= today.toLocaleString()
+    // });
 
     // console.log(tableData)
     populateTable()
@@ -92,28 +93,28 @@ function populateTable(){
 
         Object.entries(event).forEach(function([key, value]) {
             if (key != "Time" && key != "Timezone"){
-            var cell = row.append("td");
-            if (key == "DateTime"){
-                var newvalue = new Date(value);
-                // console.log(value)
-                // console.log(newvalue)
-                cell.html(formatTime(newvalue) + "<br/> (" + value.substring(11) + ")")
-                // cell.text(formatTime(newvalue) + " (" + value.substring(11) + ")");
-            } else if (key == "instructor"){
-                var parts = value.split(" @ ");
-                cell.append('a')
-                .attr('href', parts[1])
-                .attr('target','_blank')
-                .append('text').html(parts[0]);
-            } else if (key == "howto"){
-                cell.append('a')
-                .attr('href', value)
-                .attr('target','_blank')
-                .append('text').html("Link");                
-            } else {
-                cell.text(value);
+                var cell = row.append("td");
+                if (key == "DateTime"){
+                    var newvalue = new Date(value);
+                    // console.log(value)
+                    // console.log(newvalue)
+                    cell.html(formatTime(newvalue) + "<br/> (" + value.substring(11) + ")")
+                    // cell.text(formatTime(newvalue) + " (" + value.substring(11) + ")");
+                } else if (key == "instructor"){
+                    var parts = value.split(" @ ");
+                    cell.append('a')
+                    .attr('href', parts[1])
+                    .attr('target','_blank')
+                    .append('text').html(parts[0]);
+                } else if (key == "howto"){
+                    cell.append('a')
+                    .attr('href', value)
+                    .attr('target','_blank')
+                    .append('text').html("Link");                
+                } else {
+                    cell.text(value);
+                }
             }
-        }
         });
     });
 
