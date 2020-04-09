@@ -10,7 +10,8 @@ window.addEventListener('DOMContentLoaded', init)
 
 $(document).ready(function() {
     $('#results-table').DataTable({
-        scrollY: 500,
+        "scrollY": 420,
+        "scrollCollapse": true,
         "paging": false,
         "ordering": false,
         "info":     false,
