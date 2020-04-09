@@ -43,14 +43,15 @@ function loadData(data, tabletop) {
         let eventdate = new Date(event.Date);
         return formatDate(eventdate) === formatDate(today)
     });
-    // tableData = tableData.filter(event => {
-    //     // eventdatetimestring = event.Date + " " + event.Time + " " + event.Timezone
-    //     // console.log(eventdatetimestring)
-    //     var eventdatetime = new Date(event.DateTime);
-    //     console.log('Local Time: ' + eventdatetime.toLocaleString())
-    //     console.log(formatTime(time))
-    //     return eventdatetime.toLocaleString() >= today.toLocaleString()
-    // });
+    tableData = tableData.filter(event => {
+        // eventdatetimestring = event.Date + " " + event.Time + " " + event.Timezone
+        // console.log(eventdatetimestring)
+        var eventdatetime = new Date(event.DateTime);
+        var today = new Date();
+        console.log('Class Time: ' + eventdatetime.toLocaleString())
+        console.log('Current Time: ' + today.toLocaleString())
+        return eventdatetime >= today
+    });
 
     // console.log(tableData)
     populateTable()
