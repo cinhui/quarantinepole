@@ -8,6 +8,16 @@ function init() {
 
 window.addEventListener('DOMContentLoaded', init)
 
+$(document).ready(function() {
+    $('#results-table').DataTable({
+        scrollY: 500,
+        "paging": false,
+        "ordering": false,
+        "info":     false,
+        "searching": false
+    });
+} );
+
 var tableData = [];
 var originalData = [];
 var parseDate = d3.time.format("%m/%d/%Y").parse;
@@ -133,7 +143,7 @@ searchTableButton.on("click", function() {
             let eventdate = new Date(event.Date);
             let today = new Date();
             return formatDate(eventdate) === formatDate(today)
-     });
+        });
     }
 
     if (categoryValue != "All Classes" ){
