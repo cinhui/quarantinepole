@@ -85,7 +85,8 @@ function populateTable(){
                 var newvalue = new Date(value);
                 // console.log(value)
                 // console.log(newvalue)
-                cell.text(formatTime(newvalue) + " (" + value.substring(10) + ")");
+                cell.html(formatTime(newvalue) + "<br/> (" + value.substring(11) + ")")
+                // cell.text(formatTime(newvalue) + " (" + value.substring(11) + ")");
             } else if (key == "instructor"){
                 var parts = value.split(" @ ");
                 cell.append('a')
