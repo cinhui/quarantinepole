@@ -48,8 +48,8 @@ function loadData(data, tabletop) {
         // console.log(eventdatetimestring)
         var eventdatetime = new Date(event.DateTime);
         var today = new Date();
-        console.log('Class Time: ' + eventdatetime.toLocaleString())
-        console.log('Current Time: ' + today.toLocaleString())
+        // console.log('Class Time: ' + eventdatetime.toLocaleString())
+        // console.log('Current Time: ' + today.toLocaleString())
         return eventdatetime >= today
     });
 
@@ -65,8 +65,13 @@ function loadData(data, tabletop) {
 
     var instructorOptions = Array.from(new Set(data.map(item=>item.instructor)));
     instructorOptions.unshift("");
+
+    var filteredinstructorOptions = instructorOptions.filter(
+        function(d, index, arr){ return d.split(" @ ")[0] != "n/a"});
+    // console.log(filteredinstructorOptions)
+
     var instructorList = d3.select("#instructorvalue");
-    instructorList.selectAll('option').data(instructorOptions).enter()
+    instructorList.selectAll('option').data(filteredinstructorOptions).enter()
             .append('option').attr("value", function (d) { return d; }).text(function(d){ return d.split(" @ ")[0];});
     // console.log(instructorOptions);
 
