@@ -148,11 +148,13 @@ searchTableButton.on("click", function() {
             let eventdate = new Date(event.Date);
             return formatDate(eventdate) === dateValue
         });
-    } else {
+    } 
+
+    if (dateValue == "" & (instructorValue == "All Instructors" | categoryValue == "All Classes" )){
         tableData = data.filter(event => {
             let eventdate = new Date(event.Date);
             let today = new Date();
-            return formatDate(eventdate) === formatDate(today)
+            return formatDate(eventdate) >= formatDate(today)
         });
     }
 
