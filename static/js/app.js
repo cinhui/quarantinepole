@@ -58,6 +58,7 @@ function loadData(data, tabletop) {
     // Populate dropdown menus
     var categoryOptions = Array.from(new Set(data.map(item=>item.category)));
     categoryOptions.unshift("");
+    categoryOptions.sort();
     var categoryList = d3.select("#categoryvalue");
     categoryList.selectAll('option').data(categoryOptions).enter()
             .append('option').attr("value", function (d) { return d; }).text(function(d){ return d;});
@@ -65,7 +66,7 @@ function loadData(data, tabletop) {
 
     var instructorOptions = Array.from(new Set(data.map(item=>item.instructor)));
     instructorOptions.unshift("");
-
+    instructorOptions.sort();
     var filteredinstructorOptions = instructorOptions.filter(
         function(d, index, arr){ return d.split(" @ ")[0] != "n/a"});
     // console.log(filteredinstructorOptions)
