@@ -100,7 +100,7 @@ function populateTable(){
 
         Object.entries(event).forEach(function([key, value]) {
             if (key != "Time" && key != "Timezone" 
-            && key != "TZ code" && key != "UTC Time"){
+            && key != "TZ code" && key != "UTC Time" && key != "#N/A"){
                 var cell = row.append("td");
                 if (key == "DateTime"){
                     var newvalue = new Date(value);
