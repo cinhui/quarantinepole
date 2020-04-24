@@ -37,3 +37,20 @@ select {
 .margin-bottom-50 {
   margin-bottom: 50px;
 }
+
+.center {
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 50px;
+} 
+
+.jumbotron {
+  /* background-image: url("../images/quarantineLogo.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat; */
+  /* border-top: solid lightgreen; 
+  border-bottom: solid lightgreen;  */
+  margin-top: -80px; 
+  padding-bottom: 10px; 
+} 
