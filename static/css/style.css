@@ -38,9 +38,9 @@ select {
   margin-bottom: 50px;
 }
 
-.center {
+.header-center {
   margin: auto;
-  width: 100%;
+  width: 60%;
   padding: 10px;
   margin-bottom: 50px;
 } 
